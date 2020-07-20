@@ -65,12 +65,16 @@ function makeBarPlot(id) {
             x = plotData_Sorted.map(x => x[1]).slice(0, 10).reverse() //[1] corresponds to the sample_value
             y = plotData_Sorted.map(x => "OTU " + x[0]).slice(0, 10).reverse() //[0] corresponds to the OTU ID (the OTU is neccessary to append)
 
-            // THE Y AXIS NEEDS TO BE A STRING, otherwise Plotly is dumb and thinks it is an INT. 
+
+            // THE Y axis as a string 
             var traces = [{
                 type: 'bar',
                 x: x,
                 y: y,
-                orientation: 'h'
+                orientation: 'h',
+                marker: {
+                    color: '#00008B'
+                }
             }];
 
             var layout = {
@@ -106,6 +110,8 @@ function makeBubblePlot(id) {
             var layout = {
                 title: 'OTU Ids to Values',
                 showlegend: false,
+                xaxis: { title: "OTU IDS" },
+                yaxis: { title: "Values" },
             };
 
             Plotly.newPlot('bubble', data, layout);
